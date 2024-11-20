@@ -9,14 +9,30 @@ body {
 }
 
 .link-block a {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .dnerf {
   font-variant: small-caps;
 }
 
+.blue-text {
+  color: rgba(61, 50, 218, 0.863);
+}
+
+.white-text {
+  color: #f2f2f2;
+}
+
+.header-row th {
+  background-color: #f2f2f2;
+}
+
+/* 1열(헤더 열)에 음영 처리 */
+.header-column {
+  background-color: #f2f2f2;
+}
 
 .teaser .hero-body {
   padding-top: 0;
@@ -55,6 +71,12 @@ body {
     font-family: 'Google Sans', sans-serif;
 }
 
+.publication-authors span {
+  margin-right: 5px;
+  padding-bottom: 1rem;
+  display: inline-block;
+}
+
 .publication-venue {
     color: #555;
     width: fit-content;
@@ -65,9 +87,6 @@ body {
     color: #ff3860;
     width: fit-content;
     font-weight: bolder;
-}
-
-.publication-authors {
 }
 
 .publication-authors a {

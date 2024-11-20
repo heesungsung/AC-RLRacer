@@ -1,319 +1,419 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="Racing prodigy for Assetto Corsa (AC), an Reinforcement Learning (RL) agent which learned using our novel DAQ-SAC algorithm.">
-  <meta property="og:title" content="Efficient Reinforcement Learning for Autonomous Car Racing with Imperfect Demonstrations"/>
-  <meta
-    property="og:description"
-    content="In this work, we propose a class of Discriminator-Augmented Q-function (DAQ) RL algorithms
-             that effectively utilize imperfect demonstrations to guide exploration by enforcing occupancy measure matching.
-             We conduct experiments using Assetto Corsa, a widely recognized simulator for its realistic modeling of car dynamics.
-             The evaluation results show that DAQ aided Soft Actor-Critic (SAC) accelerates learning,
-             achieves better final lap times than existing methods, and even outperforms the given demonstrations."
-  />
-  <meta property="og:url" content="https://heesungsung.github.io/AC-RLRacer/"/>
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/banner_img.png" />
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
+  <head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <meta name="description" content="Racing prodigy for Assetto Corsa (AC), an Reinforcement Learning (RL) agent which learned using our novel DAQ-SAC algorithm.">
+    <meta property="og:title" content="Efficient Reinforcement Learning for Autonomous Car Racing with Imperfect Demonstrations"/>
+    <meta
+      property="og:description"
+      content="In this work, we propose a class of Discriminator-Augmented Q-function (DAQ) RL algorithms
+              that effectively utilize imperfect demonstrations to guide exploration by enforcing occupancy measure matching.
+              We conduct experiments using Assetto Corsa, a widely recognized simulator for its realistic modeling of car dynamics.
+              The evaluation results show that DAQ aided Soft Actor-Critic (SAC) accelerates learning,
+              achieves better final lap times than existing methods, and even outperforms the given demonstrations."
+    />
+    <meta property="og:url" content="https://heesungsung.github.io/AC-RLRacer/"/>
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <meta property="og:image" content="static/image/banner_img.png" />
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
 
 
-  <meta name="twitter:title" content="AC-RLRacer">
-  <meta name="twitter:description" content="Racing prodigy for Assetto Corsa (AC), an Reinforcement Learning (RL) agent which learned using our novel DAQ-SAC algorithm.">
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/banner_img.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="Reinforcement Learning">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:title" content="AC-RLRacer">
+    <meta name="twitter:description" content="Racing prodigy for Assetto Corsa (AC), an Reinforcement Learning (RL) agent which learned using our novel DAQ-SAC algorithm.">
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <meta name="twitter:image" content="static/images/banner_img.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Keywords for your paper to be indexed by-->
+    <meta name="keywords" content="Reinforcement Learning">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>Academic Project Page</title>
-  <!-- <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> -->
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-  rel="stylesheet">
+    <title>Efficient Reinforcement Learning for Autonomous Car Racing with Imperfect Demonstrations</title>
+    <!-- <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> -->
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+    rel="stylesheet">
 
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
-</head>
-<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/bulma-slider.min.js"></script>
+    <script src="static/js/index.js"></script>
+  </head>
 
 
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- Paper authors -->
-              <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
+  <body>
+    <section class="hero is-hs">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-2 publication-title">Efficient Reinforcement Learning for Autonomous Car Racing with Imperfect Demonstrations</h1>
+              <div class="is-size-4 publication-authors">
+                <!-- Paper authors -->
                 <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                  </span>
-                  </div>
+                  Heeseong Lee,</span>
+                <span class="author-block">
+                  Sungpyo Sagong,</span>
+                <span class="author-block">
+                  Minhyeong Lee,</span>
+                <span class="author-block">
+                  Dongjun Lee</span>
+                  <!-- <sup>†</sup> -->
+              </div>
 
-                  <div class="is-size-5 publication-authors">
-                    <span class="author-block">Institution Name<br>Conferance name and year</span>
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
+              <div class="is-size-4 publication-authors">
+                <span class="author-block">
+                  <a href="https://www.inrol.snu.ac.kr/" target="_blank">Seoul National University</a>
+                </span>
+                <!-- <span class="corr-author"><small><br><sup>†</sup> Indicates Corresponding Author</small></span> -->
+              </div>
 
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- Arxiv PDF link -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
-
-                    <!-- Supplementary PDF link -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                      <!-- Arxiv PDF link -->
+                  <span class="link-block">
+                    <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
                         <i class="fas fa-file-pdf"></i>
                       </span>
-                      <span>Supplementary</span>
+                      <span>Paper</span>
                     </a>
+                  </span>
+
+                  <!-- Supplementary PDF link -->
+                  <span class="link-block">
+                    <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Supplementary</span>
+                  </a>
                   </span>
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-
-                <!-- ArXiv abstract Link -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
+                    <a href="https://github.com/heesungsung/AC-RLRacer" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
                   </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
+
+                  <!-- ArXiv abstract Link -->
+                  <span class="link-block">
+                    <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
 
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video poster="" id="tree" autoplay controls muted loop height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/banner_video.mp4"
-        type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
-
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
-          </p>
+    <!-- Teaser video-->
+    <section class="hero teaser">
+      <div class="container is-max-desktop" style="margin-top: 3rem;">
+        <div class="hero-body">
+          <video poster="" id="tree" autoplay controls muted loop height="100%">
+            <!-- Your video here -->
+            <source src="static/videos/teaser_1x.mp4"
+            type="video/mp4">
+          </video>
+          <h2 class="subtitle has-text-centered">
+            Comparison of the driving performance between the proposed DAQ-SAC and other baselines.
+            <br> We use <i>Assetto Corsa</i> (AC) as the simulation environment.
+          </h2>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
+    </section>
+    <!-- End teaser video -->
 
 
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
-
-
-
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Recent advances in Reinforcement Learning (RL)
+                have shown that end-to-end controllers can achieve promising
+                results in autonomous racing, effectively handling highly
+                nonlinear dynamics and extreme action constraints. However,
+                these systems often suffer from exploration inefficiencies, particularly
+                in sparse reward settings such as lap completion tasks.
+                Learning from Demonstrations (LfD) methods have emerged
+                as a potential solution, leveraging expert demonstrations to
+                guide the learning process. In this work, we propose a class
+                of Discriminator-Augmented Q-function (DAQ) RL algorithms
+                that effectively utilize imperfect demonstrations to guide exploration
+                by enforcing occupancy measure matching. We conduct
+                experiments using Assetto Corsa, a widely recognized simulator
+                for its realistic modeling of car dynamics. The evaluation
+                results show that DAQ aided Soft Actor-Critic (SAC) accelerates
+                learning, achieves better final lap times than existing methods,
+                and even outperforms the given demonstrations.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- End youtube video -->
+    </section>
+    <!-- End paper abstract -->
 
 
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4"
-            type="video/mp4">
-          </video>
+    <!-- Paper methodology -->
+    <section class="section hero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Approach</h2>
+            <figure class="image" style="margin-bottom: 1.5rem;">
+              <img src="static/images/algo_diagram.png" alt="Algorithm Overview">
+            </figure>
+            <div class="content has-text-justified">
+              <p>
+                Above figure shows an overview of DAQ-SAC. Based on the original SAC algorithm,
+                additional values from the discriminator is augmented to the Q-function.
+                Discriminator is learned through a positive-unlabeled setup, enabling the
+                continuous improvement of positive experience sets.
+                Pseudo code of our algorithm is as follows:
+              </p>
+            </div>
+            <figure class="image" style="margin-bottom: 1.5rem; width: 50%; margin: 0 auto;">
+              <img src="static/images/pseudocode_simple.png" alt="Pseudo Code">
+            </figure>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
+    </section>
+    <!-- End paper methodology -->
 
 
+    <!-- Paper experiment -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Experiment</h2>
+            <figure class="image" style="margin-bottom: 1.5rem;">
+              <img src="static/images/experiment_setup.png" alt="Exp Setup">
+            </figure>
+            <div class="content has-text-justified">
+              <p>
+                We consider the lap completion task in car racing, which aims to achieve minimum lap-time.
+                Above figure shows the experimental setup : 
+                <b>(a)</b> Silverstone1967 track and Ferrari 458 GT2 car model in <i>Assetto Corsa</i>,  
+                <b>(b)</b> a subset of the observations fed to the networks, where all the components are
+                selected to ensure they are locally collected.
+              </p>
+              <figure class="image" style="margin-bottom: 1.5rem;">
+                <img src="static/images/interface_diagram.png" alt="Interface">
+              </figure>
+              <p>
+                Interfacing framework is built meticulously using AC APIs.
+                Overall flow is shown in the figure above.
+                Firstly, necessary data such as vehicle velocity, acceleration,
+                and contact flags are collected using supported APIs.
+                A real-time data parser then passes those data into
+                our virtual RL environment, along with additional track data.
+                The route manager parses local map data such as preview
+                curvatures, slopes, and bank angles, and a 2D rangefinder is implemented.
+                The agent interacts with this virtual environment and generates
+                actions, which are then passed through
+                the virtual gamepad to transfer the control inputs to AC.
+              </p>
+              <p>
+                We set the task which posseses following key challenges :
+                <ul>
+                  <li>
+                    <strong>Long-horizon task</strong> : Require long and precise sequence of actions to successfully complete a lap.
+                  </li>
+                  <li>
+                    <strong>Semi-sparse reward</strong> : Designed as a terminal reward episodic task with a few intermediate rewards at checkpoints.
+                  </li>
+                  <li>
+                    <strong>Low sampling speed</strong> : Unable to fast-forward or duplicate the simulation.
+                  </li>
+                  <li>
+                    <strong>Sub-optimal demonstrations</strong> : Low-quality demonstrations are provided.
+                  </li>
+                </ul>
+                Thus, our goal is to show that DAQ-SAC can effectively utilize the given imperfect demonstrations
+                to guide exploration and achieve better performance than existing methods in the long-horizon and sparse reward tasks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End paper experiment -->
 
 
+    <!-- Paper results -->
+    <section class="section hero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Result</h2>
+            <div class="content has-text-justified">
+              <p>
+                We present the experimental results to address the following questions:
+                <ul>
+                  <li>
+                    <strong>Training efficiency</strong> : How much does DAQ-SAC boost theinitial learning stage?
+                  </li>
+                  <li>
+                    <strong>Final Performance</strong> : Does DAQ-SAC achieve the best performance after sufficient training steps?
+                  </li>
+                  <li>
+                    <strong>Learned Behavior</strong> : Is the agent’s learned racing behavior comparable to that of a expert human driver?
+                  </li>
+                </ul>
+              </p>
+
+              <!-- Question 1 -->
+              <h4 class="title is-5"><br>Training Efficiency</h4>
+              <figure class="image" style="margin: 0 auto 1rem auto; width: 70%; text-align: center;">
+                <img src="static/images/epret_plot.png" alt="Training Efficiency">
+              </figure>
+              <p>
+                Training efficiency is compared with the standard of the
+                required training steps until the agent completely finish a
+                lap, and the result it shown in the figure above.
+                Our approach exhibits the best performance in two aspects: required training steps
+                and the episode return at that steps. This indicates that the
+                DAQ-SAC effectively utilizes the given demonstrations to
+                accelerate the learning process. Notably, the IL-based algorithms
+                fail to learn how to drive, highlighting the difficulty
+                of generalization without the agent’s online exploration.
+              </p>
+
+              <!-- Question 2 -->
+              <h4 class="title is-5"><br>Final Performance</h4>
+              <div class="table-container">
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered">
+                  <thead>
+                    <tr class="header-row">
+                      <th>Algorithm</th>
+                      <th>Demonstration</th>
+                      <th>DAQ-SAC</th>
+                      <th>vSAC</th>
+                      <th>SACBC</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th class="header-column">Lap time</th>
+                      <td>1:37.330</td>
+                      <td>1:29.767</td>
+                      <td>1:39.624</td>
+                      <td>1:38.539</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                Above table shows the comparison of the best lap times
+                achieved achieved after 500,000 training steps. The lap time
+                for demonstrations indicates the average lap time among the
+                existing data. Our approach achieves the fastest lap time
+                of 1:29.767 and maintains higher speeds in all sections
+                compared to the best performance of the demonstrations
+              </p>
+
+              <!-- Question 3 -->
+              <h4 class="title is-5"><br>Learned Behavior</h4>
+              <figure class="image" style="margin: 0 0 1rem 0; width: 100%; text-align: center;">
+                <img src="static/images/speed_profile.png" alt="Learned Behavior">
+              </figure>
+              <p>
+                Above figure shows the agent’s trajectory
+                for achieving the minimum lap time, with three corners of
+                varying curvatures selected for detailed visualization. The
+                agent effectively uses the full width of the track to minimize
+                the curvature of its path and maximize speed, following
+                an ”out-in-out” trajectory—a technique commonly used by
+                expert human drivers. By learning this optimal strategy, the
+                agent attains higher speeds through these curve sections,
+                resulting in improved overall performance.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End paper results -->
 
 
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
+    <!-- Paper poster -->
+    <section class="section hero is-light">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h2 class="title is-3">Poster</h2>
+          <iframe  src="static/pdfs/HSLee_poster.pdf" width="100%" height="1200">
           </iframe>
-        
-      </div>
-    </div>
-  </section>
-<!--End paper poster -->
-
-
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
-
-
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-
         </div>
       </div>
-    </div>
-  </div>
-</footer>
+    </section>
+    <!--End paper poster -->
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!--BibTex citation -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content has-text-centered">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>BibTex Code Here</code></pre>
+      </div>
+    </section>
+    <!--End BibTex citation -->
+
+
+    <footer class="footer">
+      <div class="container has-text-centered">
+        <div class="columns is-centered">
+          <div class="column is-9">
+            <div class="content">
+              <p class="white-text">
+                This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                <br>This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+    <!-- Statcounter tracking code -->
+      
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
     <!-- End of Statcounter Code -->
 
   </body>
-  </html>
+</html>
