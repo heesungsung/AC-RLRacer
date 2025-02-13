@@ -4,15 +4,11 @@
     <meta charset="utf-8">
     <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
     <!-- Replace the content tag with appropriate information -->
-    <meta name="description" content="Racing prodigy for Assetto Corsa (AC), an Reinforcement Learning (RL) agent which learned using our novel DAQ-SAC algorithm.">
+    <meta name="description" content="Racing prodigy for Assetto Corsa (AC), an agent which learned using our novel RLfD algorithm.">
     <meta property="og:title" content="Efficient Reinforcement Learning for Autonomous Car Racing with Imperfect Demonstrations"/>
     <meta
       property="og:description"
-      content="In this work, we propose a class of Discriminator-Augmented Q-function (DAQ) RL algorithms
-              that effectively utilize imperfect demonstrations to guide exploration by enforcing occupancy measure matching.
-              We conduct experiments using Assetto Corsa, a widely recognized simulator for its realistic modeling of car dynamics.
-              The evaluation results show that DAQ aided Soft Actor-Critic (SAC) accelerates learning,
-              achieves better final lap times than existing methods, and even outperforms the given demonstrations."
+      content=""
     />
     <meta property="og:url" content="https://heesungsung.github.io/AC-RLRacer/"/>
     <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
@@ -20,15 +16,16 @@
     <meta property="og:image:width" content="1200"/>
     <meta property="og:image:height" content="630"/>
 
-
+    
     <meta name="twitter:title" content="AC-RLRacer">
-    <meta name="twitter:description" content="Racing prodigy for Assetto Corsa (AC), an Reinforcement Learning (RL) agent which learned using our novel DAQ-SAC algorithm.">
+    <meta name="twitter:description" content="Racing prodigy for Assetto Corsa (AC), an agent which learned using our novel RLfD algorithm.">
     <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
     <meta name="twitter:image" content="static/images/banner_img.png">
     <meta name="twitter:card" content="summary_large_image">
     <!-- Keywords for your paper to be indexed by-->
     <meta name="keywords" content="Reinforcement Learning">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 
     <title>Efficient Reinforcement Learning for Autonomous Car Racing with Imperfect Demonstrations</title>
@@ -50,6 +47,14 @@
     <script src="static/js/bulma-carousel.min.js"></script>
     <script src="static/js/bulma-slider.min.js"></script>
     <script src="static/js/index.js"></script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+    });
+    </script>
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+    </script>
   </head>
 
 
@@ -142,8 +147,7 @@
             <iframe src="https://youtu.be/Vgd9NYJ5zD4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
           <h2 class="subtitle has-text-centered">
-            Comparison of the driving performance between the proposed DAQ-SAC and other baselines.
-            <br> We use <i>Assetto Corsa</i> (AC) as the simulation environment.
+            Teaser video
           </h2>
         </div>
       </div>
@@ -159,23 +163,7 @@
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <p>
-                Recent advances in Reinforcement Learning (RL)
-                have shown that end-to-end controllers can achieve promising
-                results in autonomous racing, effectively handling highly
-                nonlinear dynamics and extreme action constraints. However,
-                these systems often suffer from exploration inefficiencies, particularly
-                in sparse reward settings such as lap completion tasks.
-                Learning from Demonstrations (LfD) methods have emerged
-                as a potential solution, leveraging expert demonstrations to
-                guide the learning process. In this work, we propose a class
-                of Discriminator-Augmented Q-function (DAQ) RL algorithms
-                that effectively utilize imperfect demonstrations to guide exploration
-                by enforcing occupancy measure matching. We conduct
-                experiments using Assetto Corsa, a widely recognized simulator
-                for its realistic modeling of car dynamics. The evaluation
-                results show that DAQ aided Soft Actor-Critic (SAC) accelerates
-                learning, achieves better final lap times than existing methods,
-                and even outperforms the given demonstrations.
+                Recent advances in Reinforcement Learning (RL) have shown that end-to-end controllers can achieve promising results in autonomous racing, but sparse rewards and slow sample collection in environments like Assetto Corsa pose significant challenges for efficient learning. Prior works have used dense rewards and multiple machines to mitigate these issues, but such approaches often constrain the agent to path-tracking behaviors, limiting long-term planning. In this work, we propose SAC($\lambda$), a novel RL from Demonstration (RLfD) algorithm tailored for sparse reward settings. Built upon Soft Actor-Critic (SAC), SAC($\lambda$) augments the Q-function with a discriminator trained using Positive-Unlabeled (PU) learning, enabling effective utilization of imperfect demonstrations while mitigating overfitting. Experimental results show that SAC($\lambda$) significantly improves training efficiency and achieves superior lap times compared to existing methods, even surpassing the provided demonstrations.
               </p>
             </div>
           </div>
@@ -196,16 +184,12 @@
             </figure>
             <div class="content has-text-justified">
               <p>
-                Above figure shows an overview of DAQ-SAC. Based on the original SAC algorithm,
-                additional values from the discriminator is augmented to the Q-function.
-                Discriminator is learned through a positive-unlabeled setup, enabling the
-                continuous improvement of positive experience sets.
-                Pseudo code of our algorithm is as follows:
+                The above figure shows an overview of SAC($\lambda$). Based on the original SAC algorithm <span style="color: rgba(60, 180, 60, 1.00);">(green shaded box)</span>, additional value from the discriminator is augmented to the original Q-function <span style="color: rgba(255, 0, 0, 0.644);">(red dotted box)</span>. The objective of discriminator is formulated as a positive-unlabeled learning problem, and is learned using given low-quality and narrow-distributed demonstrations.
               </p>
             </div>
-            <figure class="image" style="margin-bottom: 1.5rem; width: 50%; margin: 0 auto;">
+            <!-- <figure class="image" style="margin-bottom: 1.5rem; width: 50%; margin: 0 auto;">
               <img src="static/images/pseudocode_simple.png" alt="Pseudo Code">
-            </figure>
+            </figure> -->
           </div>
         </div>
       </div>
@@ -218,17 +202,15 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
-            <h2 class="title is-3">Experiment</h2>
+            <h2 class="title is-3">Experimental setup</h2>
             <figure class="image" style="margin-bottom: 1.5rem;">
-              <img src="static/images/experiment_setup.png" alt="Exp Setup">
+              <img src="static/images/car_and_track.png" alt="Exp Setup">
             </figure>
             <div class="content has-text-justified">
               <p>
                 We consider the lap completion task in car racing, which aims to achieve minimum lap-time.
-                Above figure shows the experimental setup : 
-                <b>(a)</b> Silverstone1967 track and Ferrari 458 GT2 car model in <i>Assetto Corsa</i>,  
-                <b>(b)</b> a subset of the observations fed to the networks, where all the components are
-                selected to ensure they are locally collected.
+                Ferrari 458 GT2 is used as our racing car and evaluate on two tracks: Silverstone1967 (S67) and Monza (MNZ). The <span style="color: rgba(255, 0, 0, 0.644);">red dotted boxes</span>
+                indicate sections requiring advanced driving strategies
               </p>
               <figure class="image" style="margin-bottom: 1.5rem;">
                 <img src="static/images/interface_diagram.png" alt="Interface">
@@ -245,25 +227,22 @@
                 The agent interacts with this virtual environment and generates
                 actions, which are then passed through
                 the virtual gamepad to transfer the control inputs to AC.
+                We also provide a random initial spawn function.
               </p>
               <p>
                 We set the task which posseses following key challenges :
                 <ul>
                   <li>
-                    <strong>Long-horizon task</strong> : Require long and precise sequence of actions to successfully complete a lap.
+                    <strong>Sparse reward</strong> : Tasks which require long and precise sequence of actions to successfully finish, designed as a sparse reward problems.
                   </li>
                   <li>
-                    <strong>Semi-sparse reward</strong> : Designed as a terminal reward episodic task with a few intermediate rewards at checkpoints.
+                    <strong>Slow sample collection speed</strong> : Unable to fast-forward or duplicate the environment on a single machine.
                   </li>
                   <li>
-                    <strong>Low sampling speed</strong> : Unable to fast-forward or duplicate the simulation.
-                  </li>
-                  <li>
-                    <strong>Sub-optimal demonstrations</strong> : Low-quality demonstrations are provided.
+                    <strong>Imperfect demonstrations</strong> : Given demonstrations are sub-optimal and narrowly distributed.
                   </li>
                 </ul>
-                Thus, our goal is to show that DAQ-SAC can effectively utilize the given imperfect demonstrations
-                to guide exploration and achieve better performance than existing methods in the long-horizon and sparse reward tasks.
+                Our goal is to show that SAC(\lambda) can effectively utilize the given imperfect demonstrations to guide exploration and achieve better performance than existing methods in the long-horizon and sparse reward tasks, specifically autonomous racing.
               </p>
             </div>
           </div>
@@ -284,13 +263,17 @@
                 We present the experimental results to address the following questions:
                 <ul>
                   <li>
-                    <strong>Training efficiency</strong> : How much does DAQ-SAC boost theinitial learning stage?
+                    <strong>Training efficiency</strong> : How much does SAC($\lambda$) accelerate the early stages of learning?
                   </li>
                   <li>
-                    <strong>Final Performance</strong> : Does DAQ-SAC achieve the best performance after sufficient training steps?
+                    <strong>Final Performance</strong> : Does SAC($\lambda$) achieve superior performance after sufficient training steps?
                   </li>
                   <li>
-                    <strong>Learned Behavior</strong> : Is the agent’s learned racing behavior comparable to that of a expert human driver?
+                    <strong>Learned Behavior</strong> : Is the behavior learned by the agent qualitatively comparable to that of a human expert driver?
+                  </li>
+                  <li>
+                    <strong>Effect of $\lambda$</strong> : How does the choice of $\lambda$ affect the entire
+                    learning process?
                   </li>
                 </ul>
               </p>
@@ -298,7 +281,7 @@
               <!-- Question 1 -->
               <h4 class="title is-5"><br>Training Efficiency</h4>
               <figure class="image" style="margin: 0 auto 1rem auto; width: 70%; text-align: center;">
-                <img src="static/images/epret_plot.png" alt="Training Efficiency">
+                <img src="static/images/training_efficiency.png" alt="Training Efficiency">
               </figure>
               <p>
                 Training efficiency is compared with the standard of the
@@ -338,7 +321,7 @@
               </div>
               <p>
                 Above table shows the comparison of the best lap times
-                achieved achieved after 500,000 training steps. The lap time
+                achieved after sufficient training steps. The lap time
                 for demonstrations indicates the average lap time among the
                 existing data. Our approach achieves the fastest lap time
                 of 1:29.767 and maintains higher speeds in all sections
@@ -351,7 +334,7 @@
                 <img src="static/images/speed_profile.png" alt="Learned Behavior">
               </figure>
               <p>
-                Above figure shows the agent’s trajectory
+                The above figure shows the agent’s trajectory
                 for achieving the minimum lap time, with three corners of
                 varying curvatures selected for detailed visualization. The
                 agent effectively uses the full width of the track to minimize
