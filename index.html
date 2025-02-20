@@ -140,12 +140,9 @@
     <section class="hero teaser">
       <div class="container is-max-desktop" style="margin-top: 3rem;">
         <div class="hero-body">
-          <!-- <video poster="" id="tree" autoplay controls muted loop height="100%">
-            <source src="static/videos/teaser_1x.mp4" type="video/mp4">
-          </video> -->
-          <div class="publication-video">
-            <iframe src="https://youtu.be/Vgd9NYJ5zD4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
+          <video id="Teaser" autoplay controls playsinline muted preload="auto" width="100%" style="display: block; margin: 0 auto;">
+            <source src="static/videos/Final_Rev2.mp4" type="video/mp4">
+          </video>
           <h2 class="subtitle has-text-centered">
             Teaser video
           </h2>
@@ -294,31 +291,136 @@
                 fail to learn how to drive, highlighting the difficulty
                 of generalization without the agent’s online exploration.
               </p>
+              <figure class="image" style="margin: 0 auto 1rem auto; width: 70%; text-align: center;">
+                <img src="static/videos/OnPolicy/trpofd_square.png" alt="TRPO collapse">
+              </figure>
+              <div style="display: flex;">
+                <div>
+                  <div style="border: 5px solid rgb(0, 176, 80); display: inline-block; line-height: 0;">
+                    <video id="TRPO_best" autoplay muted playsinline preload="auto" width="100%">
+                      <source src="static/videos/OnPolicy/Best.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">TRPO Best model before collapse</h6>
+                </div>
+                <div>
+                  <div style="border: 5px solid rgb(255, 0, 0); display: inline-block; line-height: 0;">
+                    <video id="TRPO_local_minima" autoplay muted playsinline preload="auto" width="100%">
+                      <source src="static/videos/OnPolicy/Local Minima.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">TRPO Local minima after collapse</h6>
+                </div>
+              </div>
+              <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                  const efficiency_video_ids = ['TRPO_best', 'TRPO_local_minima'];
+
+                  function efficiency_video_cycle() {
+                    efficiency_video_ids.forEach((id) => {
+                      const video = document.getElementById(id);
+                      video.currentTime = 0;
+                      video.play();
+                    });
+                    setTimeout(() => {
+                      efficiency_video_ids.forEach((id) => {
+                        const video = document.getElementById(id);
+                        video.pause();
+                      });
+                    }, 38000);
+                    setTimeout(efficiency_video_cycle, 38000);
+                  }
+                  efficiency_video_cycle();
+                });
+              </script>
+
 
               <!-- Question 2 -->
               <h4 class="title is-5"><br>Final Performance</h4>
-              <div class="table-container">
-                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered">
-                  <thead>
-                    <tr class="header-row">
-                      <th>Algorithm</th>
-                      <th>Demonstration</th>
-                      <th>DAQ-SAC</th>
-                      <th>vSAC</th>
-                      <th>SACBC</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th class="header-column">Lap time</th>
-                      <td>1:37.330</td>
-                      <td>1:29.767</td>
-                      <td>1:39.624</td>
-                      <td>1:38.539</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <figure class="image" style="margin: 0 auto 1rem auto; width: 100%; text-align: center;">
+                <img src="static/images/evaluation_result.png" alt="Final Performance">
+              </figure>              
+              <div style="text-align: center;">
+                <div style="border: 1px solid black; display: inline-block; line-height: 0; margin: 0 auto 0 auto; width: 70%;">
+                  <video id="SAC_lambda" autoplay muted playsinline preload="auto" width="100%">
+                    <source src="static/videos/S67/Racesac(1.29.654).mp4" type="video/mp4">
+                  </video>
+                </div>
+                <h6 style="text-align: center;">SAC(&lambda;)</h6>
               </div>
+              <div style="display: flex;">
+                <div>
+                  <div style="border: 1px solid black; display: inline-block; line-height: 0;">
+                    <video id="Demonstration" autoplay muted playsinline preload="auto" width="100%">
+                      <source src="static/videos/S67/Demo(1.53.846).mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">Demonstration</h6>
+                </div>
+                <div>
+                  <div style="border: 1px solid black; display: inline-block; line-height: 0;">
+                    <video id="SACfD" autoplay muted playsinline preload="auto" width="100%">
+                      <source src="static/videos/S67/Sacfd(1.37.848).mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">SACfD</h6>
+                </div>              
+                <div>
+                  <div style="border: 1px solid black; display: inline-block; line-height: 0;">
+                    <video id="SACBC" autoplay muted playsinline preload="auto" width="100%">
+                      <source src="static/videos/S67/Sacbc(1.43.876).mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">SACBC</h6>
+                </div>
+              </div>
+              <div style="display: flex;">
+                <div>
+                  <div style="border: 1px solid black; display: inline-block; line-height: 0;">
+                    <video id="SAC-d" autoplay muted playsinline preload="auto" width="100%">
+                      <source src="static/videos/S67/Sac-D(1.30.686).mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">SAC-d</h6>
+                </div>
+                <div>
+                  <div style="border: 1px solid black; display: inline-block; line-height: 0;">
+                    <video id="SACfD-d(L)" autoplay muted playsinline preload="auto" width="100%">
+                      <source src="static/videos/S67/Sacfd-D(L)(1.39.906).mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">SACfD-d(L)</h6>
+                </div>
+                <div>
+                  <div style="border: 1px solid black; display: inline-block; line-height: 0;">
+                    <video id="SACfD-d(H)" autoplay muted playsinline preload="auto" width="100%">
+                      <source src="static/videos/S67/Sacfd-D(H)(1.30.006).mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">SACfD-d(H)</h6>
+                </div>
+              </div>
+              <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                  const performance_video_ids = ['Demonstration', 'SAC_lambda', 'SACfD', 'SACBC', 'SAC-d', 'SACfD-d(L)', 'SACfD-d(H)'];
+
+                  function performance_video_cycle() {
+                    performance_video_ids.forEach((id) => {
+                      const video = document.getElementById(id);
+                      video.currentTime = 0;
+                      video.play();
+                    });
+                    setTimeout(() => {
+                      performance_video_ids.forEach((id) => {
+                        const video = document.getElementById(id);
+                        video.pause();
+                      });
+                    }, 113900);
+                    setTimeout(performance_video_cycle, 113900);
+                  }
+                  performance_video_cycle();
+                });
+              </script>
               <p>
                 Above table shows the comparison of the best lap times
                 achieved after sufficient training steps. The lap time
@@ -333,6 +435,58 @@
               <figure class="image" style="margin: 0 0 1rem 0; width: 100%; text-align: center;">
                 <img src="static/images/speed_profile.png" alt="Learned Behavior">
               </figure>
+              <div style="display: flex;">
+                <div>
+                  <div style="border: 1px solid black; display: inline-block; line-height: 0;">
+                    <video id="straight" autoplay muted loop playsinline preload="auto" width="100%">
+                      <source src="static/videos/Behavior/Straight.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">Straight</h6>
+                </div>
+                <div>
+                  <div style="border: 1px solid black; display: inline-block; line-height: 0;">
+                    <video id="chicane" autoplay muted loop playsinline preload="auto" width="100%">
+                      <source src="static/videos/Behavior/Chicane (Rl).mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">Chicane</h6>
+                </div>
+                <div>
+                  <div style="border: 1px solid black; display: inline-block; line-height: 0;">
+                    <video id="sweeper" autoplay muted loop playsinline preload="auto" width="100%">
+                      <source src="static/videos/Behavior/Sweeper.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">Sweeper</h6>
+                </div>
+              </div>
+              <div style="display: flex;">
+                <div>
+                  <div style="border: 1px solid black; display: inline-block; line-height: 0;">
+                    <video id="corners" autoplay muted loop playsinline preload="auto" width="100%">
+                      <source src="static/videos/Behavior/Corners.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">Corners</h6>
+                </div>
+                <div>
+                  <div style="border: 1px solid black; display: inline-block; line-height: 0;">
+                    <video id="kink" autoplay muted loop playsinline preload="auto" width="100%">
+                      <source src="static/videos/Behavior/Kink.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">Kink</h6>
+                </div>
+                <div>
+                  <div style="border: 1px solid black; display: inline-block; line-height: 0;">
+                    <video id="esses" autoplay muted loop playsinline preload="auto" width="100%">
+                      <source src="static/videos/Behavior/Esses.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <h6 style="text-align: center;">Esses</h6>
+                </div>
+              </div>
               <p>
                 The above figure shows the agent’s trajectory
                 for achieving the minimum lap time, with three corners of
@@ -353,7 +507,7 @@
 
 
     <!-- Paper poster -->
-    <section class="section hero is-light">
+    <!-- <section class="section hero is-light">
       <div class="hero-body">
         <div class="container has-text-centered">
           <h2 class="title is-3">Poster</h2>
@@ -361,7 +515,7 @@
           </iframe>
         </div>
       </div>
-    </section>
+    </section> -->
     <!--End paper poster -->
 
 
