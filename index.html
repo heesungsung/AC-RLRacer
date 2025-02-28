@@ -119,7 +119,7 @@
         <div class="container is-max-desktop">
           <div class="columns is-centered">
             <div class="column has-text-centered">
-              <h1 class="title is-2 publication-title">Efficient Reinforcement Learning for Autonomous Car Racing with Imperfect Demonstrations</h1>
+              <h1 class="title is-2 publication-title" style="font-size: 2.2em;">SAC(λ): Efficient Reinforcement Learning for Sparse-Reward Autonomous Car Racing using Imperfect Demonstrations</h1>
               <div class="is-size-4 publication-authors">
                 <!-- Paper authors -->
                 <span class="author-block">
@@ -129,15 +129,16 @@
                 <span class="author-block">
                   Minhyeong Lee,</span>
                 <span class="author-block">
-                  Dongjun Lee</span>
-                  <!-- <sup>†</sup> -->
+                  Dongjun Lee<sup>†</sup></span>
+                  
               </div>
 
               <div class="is-size-4 publication-authors">
                 <span class="author-block">
                   <a href="https://www.inrol.snu.ac.kr/" target="_blank">Seoul National University</a>
-                </span>
-                <!-- <span class="corr-author"><small><br><sup>†</sup> Indicates Corresponding Author</small></span> -->
+                </span><br>
+                <span class="corr-author" style="font-size: 0.8em;">
+                  <small>† indicates corresponding author</small></span>
               </div>
 
               <div class="column has-text-centered">
@@ -153,7 +154,7 @@
                   </span>
 
                   <!-- Supplementary PDF link -->
-                  <span class="link-block">
+                  <!-- <span class="link-block">
                     <a href="static/pdfs/supplementary_material.pdf" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
@@ -161,11 +162,11 @@
                     </span>
                     <span>Supplementary</span>
                   </a>
-                  </span>
+                  </span> -->
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/heesungsung/AC-RLRacer" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                    <a href="https://github.com/INRoL-AD/AC-Racer" target="_blank" class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
                         <i class="fab fa-github"></i>
                       </span>
@@ -174,14 +175,14 @@
                   </span>
 
                   <!-- ArXiv abstract Link -->
-                  <span class="link-block">
+                  <!-- <span class="link-block">
                     <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank" class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
                         <i class="ai ai-arxiv"></i>
                       </span>
                       <span>arXiv</span>
                     </a>
-                  </span>
+                  </span> -->
                 </div>
               </div>
             </div>
@@ -195,7 +196,7 @@
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <div class="full-width-video">
-            <iframe src="https://www.youtube-nocookie.com/embed/muJ4fUHyKzo?si=S9iDirwalQOhntj1&loop=1&playlist=muJ4fUHyKzo&autoplay=1&mute=1&modestbranding=1&showinfo=0&loop=1&playlist=muJ4fUHyKzo&rel=0"
+            <iframe src="https://www.youtube-nocookie.com/embed/1xBiWlkgPlc?si=eA5Fzvl_tkght5XG&loop=1&playlist=1xBiWlkgPlc&autoplay=1&mute=1&modestbranding=1&showinfo=0&loop=1&playlist=muJ4fUHyKzo&rel=0"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -215,7 +216,7 @@
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <p>
-                Recent advances in Reinforcement Learning (RL) have shown that end-to-end controllers can achieve promising results in autonomous racing, but sparse rewards and slow sample collection in environments like Assetto Corsa pose significant challenges for efficient learning. Prior works have used dense rewards and multiple machines to mitigate these issues, but such approaches often constrain the agent to path-tracking behaviors, limiting long-term planning. In this work, we propose SAC($\lambda$), a novel RL from Demonstration (RLfD) algorithm tailored for sparse reward settings. Built upon Soft Actor-Critic (SAC), SAC($\lambda$) augments the Q-function with a discriminator trained using Positive-Unlabeled (PU) learning, enabling effective utilization of imperfect demonstrations while mitigating overfitting. Experimental results show that SAC($\lambda$) significantly improves training efficiency and achieves superior lap times compared to existing methods, even surpassing the provided demonstrations.
+                Recent advances in Reinforcement Learning (RL) have shown that end-to-end controllers can achieve promising results in autonomous racing. However, minimizing lap time, a sparse objective, poses significant challenges for efficient learning. In this work, we propose SAC(λ), a novel RL from Demonstration (RLfD) algorithm tailored for sparse-reward sim racing tasks. SAC(λ) introduces a discriminator-augmented Q-function to integrate knowledge from demonstrations while preserving the benefits of off-policy learning. Additionally, it employs a Positive Unlabeled (PU) learning framework with adaptive prior adjustment, enabling the use of imperfect demonstrations by progressively refining its understanding of positive behaviors while mitigating overfitting problem. Experimental results demonstrate that SAC(λ) accelerates training process, surpasses the performance of the provided demonstrations, and achieves superior lap times compared to existing RL and RLfD approaches.
               </p>
             </div>
           </div>
@@ -236,7 +237,7 @@
             </figure>
             <div class="content has-text-justified">
               <p>
-                The above figure shows an overview of SAC($\lambda$). Based on the original SAC algorithm <span style="color: rgba(60, 180, 60, 1.00);">(green shaded box)</span>, additional value from the discriminator is augmented to the original Q-function <span style="color: rgba(255, 0, 0, 0.644);">(red dotted box)</span>. The objective of discriminator is formulated as a positive-unlabeled learning problem, and is learned using given low-quality and narrow-distributed demonstrations.
+                The above figure shows an overview of SAC(λ). Based on the original SAC algorithm <span style="color: rgba(60, 180, 60, 1.00);">(green shaded box)</span>, additional value from the discriminator is augmented to the original Q-function <span style="color: rgba(255, 0, 0, 0.644);">(red dotted box)</span>. The objective of discriminator is formulated as a positive-unlabeled learning problem, and is learned using given low-quality and narrow-distributed demonstrations.
               </p>
             </div>
             <!-- <figure class="image" style="margin-bottom: 1.5rem; width: 50%; margin: 0 auto;">
@@ -255,7 +256,7 @@
         <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
             <h2 class="title is-3">Experimental setup</h2>
-            <figure class="image" style="margin-bottom: 1.5rem;">
+            <figure class="image" style="margin: 0 auto 1rem auto; width: 80%; text-align: center;">
               <img src="static/images/car_and_track.png" alt="Exp Setup">
             </figure>
             <div class="content has-text-justified">
@@ -264,7 +265,7 @@
                 Ferrari 458 GT2 is used as our racing car and evaluate on two tracks: Silverstone1967 (S67) and Monza (MNZ). The <span style="color: rgba(255, 0, 0, 0.644);">red dotted boxes</span>
                 indicate sections requiring advanced driving strategies
               </p>
-              <figure class="image" style="margin-bottom: 1.5rem;">
+              <figure class="image" style="margin: 0 auto 1.5rem auto; width: 100%; text-align: center;">
                 <img src="static/images/interface_diagram.png" alt="Interface">
               </figure>
               <p>
@@ -294,7 +295,7 @@
                     <strong>Imperfect demonstrations</strong> : Given demonstrations are sub-optimal and narrowly distributed.
                   </li>
                 </ul>
-                Our goal is to show that SAC(\lambda) can effectively utilize the given imperfect demonstrations to guide exploration and achieve better performance than existing methods in the long-horizon and sparse reward tasks, specifically autonomous racing.
+                Our goal is to show that SAC(λ) can effectively utilize the given imperfect demonstrations to boost the learning process and achieve better performance than existing methods in the long-horizon and sparse reward tasks, specifically autonomous racing.
               </p>
             </div>
           </div>
@@ -315,17 +316,16 @@
                 We present the experimental results to address the following questions:
                 <ul>
                   <li>
-                    <strong>Training efficiency</strong> : How much does SAC($\lambda$) accelerate the early stages of learning?
+                    <strong>Training efficiency</strong> : How effectively does SAC(λ) accelerate the early stages of learning? 
                   </li>
                   <li>
-                    <strong>Final Performance</strong> : Does SAC($\lambda$) achieve superior performance after sufficient training steps?
+                    <strong>Final Performance</strong> : Does SAC(λ) achieve superior performance after sufficient training steps?
                   </li>
                   <li>
                     <strong>Learned Behavior</strong> : Is the behavior learned by the agent qualitatively comparable to that of a human expert driver?
                   </li>
                   <li>
-                    <strong>Effect of $\lambda$</strong> : How does the choice of $\lambda$ affect the entire
-                    learning process?
+                    <strong>Effect of λ</strong> : How does the choice of λ affect the entire learning process?
                   </li>
                 </ul>
               </p>
@@ -336,15 +336,18 @@
                 <img src="static/images/training_efficiency.png" alt="Training Efficiency">
               </figure>
               <p>
-                Training efficiency is compared with the standard of the
-                required training steps until the agent completely finish a
-                lap, and the result it shown in the figure above.
-                Our approach exhibits the best performance in two aspects: required training steps
-                and the episode return at that steps. This indicates that the
-                DAQ-SAC effectively utilizes the given demonstrations to
-                accelerate the learning process. Notably, the IL-based algorithms
-                fail to learn how to drive, highlighting the difficulty
-                of generalization without the agent’s online exploration.
+                The above figure shows the episode returns
+                during the initial stages of training. Training efficiency is
+                evaluated based on two criteria: (1) the number of training
+                steps required for the agent to complete its first lap and (2)
+                the lap time at that episode. Vertical dotted lines in the figure
+                represent the average number of steps required for the first
+                lap completion. Among all algorithms, SAC(λ) demonstrates the fastest
+                learning speed, completing the first lap in fewer steps and
+                achieving the highest returns, indicating faster lap times.
+                Notably, IL-based algorithms struggle to deal with OOD data as it
+                does not leverage online interaction information.
+                TRPOfD also fails to complete a lap, as it becomes trapped in a local minimum, as shown below.
               </p>
               <figure class="image" style="margin: 0 auto 1rem auto; width: 70%; text-align: center;">
                 <img src="static/videos/OnPolicy/trpofd_square.png" alt="TRPO collapse">
@@ -397,7 +400,7 @@
               </figure>              
               <div style="margin-bottom: 20px;">
                 <div class="video-container" style="width:70%;">
-                  <div id="player1"></div><h6 style="text-align: center;">SAC(&lambda;)</h6>
+                  <div id="player1"></div><h6 style="text-align: center;">SAC(λ)</h6>
                 </div>
               </div>
           
@@ -419,7 +422,8 @@
                 for demonstrations indicates the average lap time among the
                 existing data. Our approach achieves the fastest lap time
                 of 1:29.767 and maintains higher speeds in all sections
-                compared to the best performance of the demonstrations
+                compared to the best performance of the demonstrations and
+                other baseline methods.
               </p>
 
               <!-- Question 3 -->
@@ -469,15 +473,33 @@
               </div>
               <p>
                 The above figure shows the agent’s trajectory
-                for achieving the minimum lap time, with three corners of
-                varying curvatures selected for detailed visualization. The
+                for achieving the minimum lap time, with challenging sections
+                of varying curvatures selected for detailed visualization. The
                 agent effectively uses the full width of the track to minimize
                 the curvature of its path and maximize speed, following
-                an ”out-in-out” trajectory—a technique commonly used by
+                an "out-in-out" trajectory—a technique commonly used by
                 expert human drivers. By learning this optimal strategy, the
                 agent attains higher speeds through these curve sections,
                 resulting in improved overall performance.
               </p>
+
+              <!-- Question 4 -->
+              <h4 class="title is-5"><br>Effect of λ</h4>
+              <figure class="image" style="margin: 0 auto 1rem auto; width: 80%; text-align: center;">
+                <img src="static/images/ablation.png" alt="Ablation" style="display: block; margin: auto;">
+              </figure>
+            
+              
+              <p>
+                The above figure shows evaluation results on the S67 track: (a) a comparison of the best
+                lap times against algorithms trained with dense rewards and (b) effects of
+                different λ values on SAC(λ) performance. As λ increases, the algorithm begins
+                to leverage offline demonstrations more effectively, reaching
+                peak performance at λ = 0.1. Beyond this point, while
+                the initial learning speed improves, performance starts to
+                decline in the later stages due to the stronger influence of
+                IL.
+              </p> 
             </div>
           </div>
         </div>
@@ -500,12 +522,12 @@
 
 
     <!--BibTex citation -->
-    <section class="section" id="BibTeX">
+    <!-- <section class="section" id="BibTeX">
       <div class="container is-max-desktop content has-text-centered">
         <h2 class="title">BibTeX</h2>
         <pre><code>BibTex Code Here</code></pre>
       </div>
-    </section>
+    </section> -->
     <!--End BibTex citation -->
 
 
