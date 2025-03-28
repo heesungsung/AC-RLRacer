@@ -56,7 +56,7 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
     </script>
     <script>
-        var players = {}; // YouTube 플레이어 객체 저장
+        var players = {};
         const videoIds = [
           { id: 'player1', videoId: '9g7bapVK-MU' }, // SAC(λ)
           { id: 'player2', videoId: '4qI4NcYF-Wg' }, // Demonstration
@@ -66,7 +66,7 @@
           { id: 'player6', videoId: 'FkphPH0WKuA' }, // SACfD-d(L)
           { id: 'player7', videoId: 'xMMTiS9pzQA' }  // SACfD-d(H)
         ];
-        const videoDuration = 113900; // 반복 시간 (밀리초)
+        const videoDuration = 113900;
 
         function onYouTubeIframeAPIReady() {
           videoIds.forEach(({ id, videoId }) => {
@@ -78,7 +78,7 @@
                 'autoplay': 1,
                 'mute': 1,
                 'loop': 1,
-                'playlist': videoId, // loop 설정
+                'playlist': videoId,
                 'modestbranding': 1,
                 'showinfo': 0,
                 'rel': 0
@@ -128,6 +128,8 @@
                   Sungpyo Sagong,</span>
                 <span class="author-block">
                   Minhyeong Lee,</span>
+                <span class="author-block">
+                  Jeongmin Lee,</span>
                 <span class="author-block">
                   Dongjun Lee<sup>†</sup></span>
                   
