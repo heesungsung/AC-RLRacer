@@ -218,7 +218,7 @@
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <p>
-                Recent advances in Reinforcement Learning (RL) have shown that end-to-end controllers can achieve promising results in autonomous racing. However, minimizing lap time, a sparse objective, poses significant challenges for efficient learning. In this work, we propose SAC(λ), a novel RL from Demonstration (RLfD) algorithm tailored for sparse-reward sim racing tasks. SAC(λ) introduces a discriminator-augmented Q-function to integrate knowledge from demonstrations while preserving the benefits of off-policy learning. Additionally, it employs a Positive Unlabeled (PU) learning framework with adaptive prior adjustment, enabling the use of imperfect demonstrations by progressively refining its understanding of positive behaviors while mitigating overfitting problem. Experimental results demonstrate that SAC(λ) accelerates training process, surpasses the performance of the provided demonstrations, and achieves superior lap times compared to existing RL and RLfD approaches.
+                Recent advances in Reinforcement Learning (RL) have demonstrated promising results in autonomous car racing. However, two fundamental challenges remain: sparse rewards, which hinder efficient learning process, and the quality of demonstrations, which directly affects the effectiveness of RL from Demonstration (RLfD) approaches. To address these issues, we propose SAC(λ), a novel RLfD algorithm tailored for sparse-reward racing tasks with imperfect demonstrations. SAC(λ) introduces two key components: (1) a discriminator-augmented Q-function, which integrates prior knowledge from demonstrations into value estimation while maintaining off-policy learning benefits, and (2) a Positive-Unlabeled (PU) learning framework with adaptive prior adjustment, which enables the agent to progressively refine its understanding of positive behaviors, while mitigating the overfitting problem. Through extensive experiments in the Assetto Corsa simulator, we demonstrate that SAC(λ) significantly accelerates training, surpasses the provided demonstrations, and achieves superior lap times over existing RL and RLfD approaches
               </p>
             </div>
           </div>
@@ -396,7 +396,9 @@
 
 
               <!-- Question 2 -->        
-              <h4 class="title is-5"><br>Final Performance</h4>
+              <h4 class="title is-5" style="margin-top: 20px;">
+                Final Performance<span style="font-weight: normal;"> : lap time (s)</span>
+              </h4>
               <figure class="image" style="margin: 0 auto 1rem auto; width: 100%; text-align: center;">
                 <img src="static/images/evaluation_result.png" alt="Final Performance">
               </figure>              
@@ -486,21 +488,23 @@
               </p>
 
               <!-- Question 4 -->
-              <h4 class="title is-5"><br>Effect of λ</h4>
+              <h4 class="title is-5"><br>Comparison with dense-reward setting, and effect of the λ</h4>
               <figure class="image" style="margin: 0 auto 1rem auto; width: 80%; text-align: center;">
                 <img src="static/images/ablation.png" alt="Ablation" style="display: block; margin: auto;">
               </figure>
             
               
               <p>
-                The above figure shows evaluation results on the S67 track: (a) a comparison of the best
-                lap times against algorithms trained with dense rewards and (b) effects of
-                different λ values on SAC(λ) performance. As λ increases, the algorithm begins
+                The above figure shows evaluation results on the S67 track:
+                (a) a comparison of the best lap times against algorithms trained with dense rewards and
+                (b) ablation study on the effects of different λ values on SAC(λ) performance.
+                Compared to algorithms trained with dense rewards,
+                SAC($\lambda$) still demonstrates superior performance
+                As λ increases, the algorithm begins
                 to leverage offline demonstrations more effectively, reaching
                 peak performance at λ = 0.1. Beyond this point, while
                 the initial learning speed improves, performance starts to
-                decline in the later stages due to the stronger influence of
-                IL.
+                decline in the later stages due to the stronger influence of IL.
               </p> 
             </div>
           </div>
